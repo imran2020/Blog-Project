@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+instagram
+{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        #tt{
+            margin-left:200px;
+        }
+        .u_img{
+            border-radius:50%;
+
+        }
+
+        .panel-default > .panel-heading {
+
+    color: #333333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    height: 70px;
+
+}
+
+body{
+    background-color: #E9EBEE;
+}
+
+.panel-title {
+
+    margin-top:0px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+
+}
+
+#option{
+
+    float:right;
+    font-size:15px;
+
+}
+h1{
+    font-size:18px;
+}
+
+#first h1,h2{
+
+    margin-left:30px;
+}
+h3{
+
+    margin-top:12px;
+}
+.alert-success {
+
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: gray;
+    height: 60px;
+    margin-top: 138px;
+    width: 750px;
+    margin-left: 380px;
+    color: blue;
+    font-weight:bold;
+
+}
+
+
+
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+     {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+    <div class="row">
+        <div class="col-md-3" id="first">
+            <h2>All Category</h2>
+            {% for cat in category %}
+                <a href="{% url 'category' name=cat.name %}"> <h1>{{cat.name}}</h1></a>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-6">
+            <a href="{% url 'create_post' %}"> <button type="button" class="btn btn-primary">Creata a Post </button></a><br>
+            {% for i in image %}
+            <div class="panel panel-default">
+                  <div class="panel-heading">
+
+                    <h3 class="panel-title"> <img src="{{i.post_author.profile_picture.url}}" class="u_img"  height="50px" width="50px">{{i.post_author.name.username}}<a href="{% url 'edit' id=i.id %}"> <h1 id="option">...</h1></a></h3>
+
+                  </div>
+                  <div class="panel-body">
+
+                            <img src="{{i.profile_picture.url}}"  id="tt" class="img-responsive" height="450px" width="300px">
+                      <p>{{i.body|safe}}</p>
+
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-3">
+            <h2>all user</h2>
+            {% for all in all_user %}
+            <a href="{% url 'myprofile' id=all.id %}"> <img src="{{all.profile_picture.url}}"  class="u_img" height="50px" width="50px">{{all.name.username}}</a><br><br>
+
+
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+

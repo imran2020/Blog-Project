@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+create author
+{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        body{
+    background-color: #E9EBEE;
+}
+
+.alert-success {
+
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+    height: 50px;
+    margin-top: 10px;
+
+}
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn-btn-primary" type="submit">Create Author</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+

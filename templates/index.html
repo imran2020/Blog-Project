@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+welcome to our django blog
+{% endblock %}
+
+{% block stylesheet %}
+	<style>
+		body{
+    background-color: #E9EBEE;
+}
+
+#first h1{
+
+    margin-left:30px;
+    font-size:18px;
+}
+#first h2{
+
+    margin-left:30px;
+	font-weight:bold;
+}
+
+.col-md-4 {
+
+    width: 300px;
+    height: 400px;
+
+}
+
+#search {
+
+    height: 40px;
+    width: 500px;
+    margin-left: 130px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+}
+
+#search_b{
+
+	margin-left:0px;
+}
+	</style>
+{% endblock %}
+
+{% block content %}
+
+
+		<div class="row">
+
+			<div class="col-md-2" id="first">
+				 <h2>All Category</h2>
+					{% for cat in category %}
+						<a href="{% url 'category' name=cat.name %}"> <h1>{{cat.name}}</h1></a>
+					{% endfor %}
+			</div>
+
+			<div class="col-md-10">
+				<form action="/search/" method="POST" id="search">
+					{% csrf_token %}
+					<input type="text" name="q" placeholder="Search... " id="search">
+					<button type="submit" id="search_b">Search</button>
+				</form>
+
+
+
+
+				{% for p in post %}
+
+
+				  <div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+					  <a href="{% url 'single_post' id=p.id %}"><img src="{{p.image.url}}" height="200px" width="150px"></a>
+					  <div class="caption">
+						<a href="{% url 'single_post' id=p.id %}"><h3>{{p.title}}</h3></a>
+						<p>Author :  <a href="{% url 'author' name=p.article_author.name.username %}">{{p.article_author.name}}</a></p>
+						<span class="fh5co-meta fh5co-date">{{p.posted_on}}</span>
+					  </div>
+					</div>
+				  </div>
+
+			{% endfor %}
+
+
+
+
+				{% if sr %}
+							{% for k in sr %}
+
+								  <div class="col-sm-6 col-md-4">
+									<div class="thumbnail">
+									  <a href="{% url 'single_post' id=k.id %}"><img src="{{k.image.url}}" height="200px" width="150px"></a>
+									  <div class="caption">
+										<a href="{% url 'single_post' id=k.id %}"><h3>{{k.title}}</h3></a>
+										<p>Author :  <a href="{% url 'author' name=k.article_author.name.username %}">{{k.article_author.name}}</a></p>
+										<span class="fh5co-meta fh5co-date">{{k.posted_on}}</span>
+									  </div>
+									</div>
+								  </div>
+							{% endfor %}
+						{%else %}
+							{% if messages %}
+								<div class="messages">
+									{% for message in messages %}
+									<div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+									{% endfor %}
+								</div>
+								{% endif %}
+
+				{% endif %}
+
+
+
+
+
+			</div>
+		</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+	<!-- END #fh5co-header -->
+

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Create post
+{% endblock %}
+
+{% block stylesheet %}
+
+<style>
+    body{
+    background-color: #E9EBEE;
+}
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h1>write something</h1>
+                    <div class="container">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.media}}
+                            {{form.as_p}}
+                            <button type="submit" class="btn-btn-success">Post</button>
+                        </form>
+                    </div>
+                </div>
+            <div class="col-md-3"></div>
+        </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+

@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+profile
+{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        body{
+    background-color: #E9EBEE;
+}
+
+.u_img{
+            border-radius:50%;
+            float:left;
+
+        }
+
+        .panel-default > .panel-heading {
+
+    color: #333333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    height: 65px;
+
+}
+
+.panel-title {
+
+    margin-top: 13px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+
+}
+
+        .image{
+
+            height:400px;
+            width:1020px;
+             background-color:black;
+
+        }
+        .image .img{
+            margin-top:150px;
+        }
+ h1{
+    font-size:18px;
+}
+
+
+
+.a_img{
+    float:left;
+    border-radius:50%;
+}
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-md-1">left</div>
+            <div class="col-md-9">
+                <div class="image">
+                    <img src="{{auth.profile_picture.url}}"  class="img" height="250px" width="200px">
+                    <h2>{{auth.name.username}}</h2><br><br>
+                </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <br><h1>About</h1><a class="btn btn-default" href="#" role="button">Add your About</a>
+
+
+                        </div>
+
+                        <div class="col-md-8">
+                            {% for post in u_post %}
+
+                                 <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <img src="{{post.post_author.profile_picture.url}}"  class="u_img" height="50px" width="50px">
+                                        <h3 class="panel-title">{{post.post_author.name.username}}</h3>
+                                      </div>
+                                      <div class="panel-body">
+
+
+                                          <p>{{post.body|safe}}</p>
+
+
+                                      </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-2">
+
+                  <h2>all user</h2>
+            {% for all in all_user %}
+            <a href="{% url 'myprofile' id=all.id %}"> <img src="{{all.profile_picture.url}}"  class="a_img" height="50px" width="50px"></a>
+            <a href="{% url 'myprofile' id=all.id %}"> <h1>{{all.name.username}}</h1></a><br>
+
+            {% endfor %}
+
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block script %}
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction1() {
+  var x = document.getElementById("myDIV1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction2() {
+  var x = document.getElementById("myDIV2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction3() {
+  var x = document.getElementById("myDIV3");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction4() {
+  var x = document.getElementById("myDIV4");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction5() {
+  var x = document.getElementById("myDIV5");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction6() {
+  var x = document.getElementById("myDIV6");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction7() {
+  var x = document.getElementById("myDIV7");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+
+{% block stylesheet %}
+
+        <style>
+            .alert-success {
+
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+    height: 50px;
+    margin-top: 230px;
+
+}
+
+body{
+    background-color: #E9EBEE;
+}
+        </style>
+{% endblock %}
+
+
+{% block content %}
+    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+    <div class="container">
+        <a href="{% url 'create' %}" class="btn-btn-primary pull pull-right"><button class="btn-btn-success">Add New Article</button></a>
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Posted on</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+            <tbody>
+                {% for p in post %}
+                    <tr>
+                        <td>{{p.title}}</td>
+                        <td>{{p.posted_on}}</td>
+                        <td><a href="{% url 'delete' id=p.id %}">Delete</a>||<a href="{% url 'update' id=p.id %}">Edit</a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+

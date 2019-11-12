@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+create
+{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        body{
+    background-color: #E9EBEE;
+}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+        <div class="container-fluid">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.media}}
+                {{form.as_p}}
+                <button class="btn-btn-success">submit</button>
+            </form>
+        </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+

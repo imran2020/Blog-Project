@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Create Topic
+{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        body{
+    background-color: #E9EBEE;
+}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn-btn-success" type="submit">Create Category</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+
